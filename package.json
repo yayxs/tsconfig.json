@@ -1,0 +1,11 @@
+{
+  "name": "tsconfig",
+  "version": "0.0.1",
+  "description": "什么是tsconfig",
+  "scripts": {},
+  "keywords": [],
+  "author": "vanlee",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}
