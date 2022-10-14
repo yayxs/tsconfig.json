@@ -1,12 +1,18 @@
 lockfileVersion: 5.4
 
 specifiers:
+  jquery: ^3.6.1
   typescript: ^4.8.4
 
 devDependencies:
+  jquery: 3.6.1
   typescript: 4.8.4
 
 packages:
+
+  /jquery/3.6.1:
+    resolution: {integrity: sha512-opJeO4nCucVnsjiXOE+/PcCgYw9Gwpvs/a6B1LL/lQhwWwpbVEVYDZ1FokFr8PRc7ghYlrFPuyHuiiDNTQxmcw==}
+    dev: true
 
   /typescript/4.8.4:
     resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}

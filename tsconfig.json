@@ -11,8 +11,28 @@
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": false,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "strict": false,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "jquery": ["node_modules/jquery/dist/jquery.js"]
+    },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "declaration": true,
+    "allowJs": true,
+    "checkJs": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src"],
-  "files": ["core.ts"]
+  "include": ["core/**/*"]
+  // "include": ["src/**/*"],
+  // "exclude": ["src/file-excluded"]
+  // "files": ["src/files/file-a.ts", "src/files/file-b.ts"]
 }

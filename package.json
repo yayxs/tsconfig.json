@@ -2,10 +2,13 @@
   "name": "tsconfig",
   "version": "0.0.1",
   "description": "什么是tsconfig",
-  "scripts": {},
+  "scripts": {
+    "dev": "tsc"
+  },
   "keywords": [],
   "author": "vanlee",
   "devDependencies": {
+    "jquery": "^3.6.1",
     "typescript": "^4.8.4"
   }
 }
