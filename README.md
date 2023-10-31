@@ -83,37 +83,22 @@ extends 的值是一个字符串，其中包含要继承的另一个配置文件
 }
 ```
 
-## include
-
-指定要包含在程序中的文件名或模式数组。这些文件名相对于包含 tsconfig.json 文件的目录进行解析
-
-\*匹配零个或多个字符（不包括目录分隔符）
-?匹配任何一个字符（不包括目录分隔符）
-\*\*/ 匹配任何嵌套到任何级别的目录
-
-```json
-{
-  "include": ["src", "__tests__"],
-  "include": ["src/**/*.ts"],
-  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-  "include": ["."],
-  "include": ["src"],
-  "include": ["./src"],
-  "include": ["./", "../dep-types", "../types"],
-  "include": ["./rollup.config.ts"]
-}
-```
-
-## exclude
-
-指定解析包含时应跳过的文件名或模式数组。仅排除因包含设置而包含的文件的更改。由于代码中的导入语句、类型包含、`///` `<reference` 指令或在文件列表中指定，由 exclude 指定的文件仍然可以成为代码库的一部分。它不是一种阻止文件被包含在代码库中的机制——它只是改变了包含设置找到的内容。
-**需要注意的是，exclude 只能剔除已经被 include 包含的文件。**
-
 ## references
 
 项目引用是一种将 TypeScript 程序构造成更小部分的方法。使用项目引用可以大大缩短构建和编辑器的交互时间，强制组件之间的逻辑分离，并以新的和改进的方式组织您的代码。
 
-这些选项构成了 TypeScript 的大部分配置，它涵盖了该语言的工作方式。
+换句话说，将整个工程拆分多个部分，`UI部分` `Hooks部分`
+
+> 这些选项构成了 TypeScript 的大部分配置，它涵盖了该语言的工作方式。
+
+## compilerOptions
+
+默认或者给出警告，显示的通过配置允许有害语法
+`allowXXX`
+
+### Type Checking / allowUnreachableCode
+
+通常表示无法执到的代码 `Dead Code` ，包括 `return语句` `throw语句` `process.exit` 后代码
 
 ```json
  "compilerOptions": {
@@ -133,17 +118,30 @@ function fn(n: number) {
 }
 ```
 
-## compilerOptions
-
-### Type Checking / allowUnreachableCode
+allowUnreachableCode 配置的默认值为 undefined，表现为在编译过程中并不会抛出阻止过程的错误，而只是一个警告。它也可以配置为 true（完全允许）与 false （抛出一个错误）
 
 ### Type Checking / allowUnusedLabels
+
+```js
+someLabel: statement
+```
+
+statement 语句会被标记为 someLabel ，然后在别的地方你就可以用 someLabel 来引用这段语句。
 
 ### Type Checking / alwaysStrict
 
 确保您的文件在 ECMAScript 严格模式下解析，并为每个源文件发出“use strict”。ECMAScript 严格模式是在 ES5 中引入的，它为 JavaScript 引擎的运行时提供行为调整以提高性能，并抛出一组错误而不是默默地忽略它们。
+会对所有的 `ts` 文件使用严格模式 进行检查 生成的 js 文件也会带 `use strict`
 
 ### Type Checking / exactOptionalPropertyTypes
+
+这一配置会使得 `ts` 对可选择的属性 `?` 启用更加严格的检查 ，
+
+```ts
+interface IColors {
+  color: 'dark' | 'red'
+}
+```
 
 ### Type Checking /noFallthroughCasesInSwitch
 
@@ -162,9 +160,46 @@ switch (a) {
 }
 ```
 
+这一配置确保在你的 `switch case` 语句中不会存在连续多个 `case` 语句的情况 注意连续执行指的是 `case` 中自己执行了专属逻辑后，由于没有 `break/return ` 语句导致继续向下执行
+
 ### Type Checking / noImplicitAny
 
+在某些不存在类型注释的情况下，TypeScript 将在无法推断类型时回退到变量的任何类型。
+
+```ts
+function foo(s) {
+  console.log(s.includes('x'))
+}
+
+foo(12)
+foo(true)
+foo({})
+```
+
+没有类型被推导`any` 禁止行为，
+
 ### Type Checking / noImplicitOverride
+
+```ts
+/**
+ * 派生类继承基类的时候。通常不希望去覆盖基类已经有的方法
+ * 在真正需要覆盖基类方法的时候 这一配置的作用就是 避免在不使用 `override` 关键字的情况下
+ */
+
+class BaseCls {
+  print() {}
+}
+
+class SomeCls1 extends BaseCls {
+  override print(): void {}
+}
+
+class SomeCls2 extends BaseCls {
+  // 错误
+  // print(): void {
+  // }
+}
+```
 
 ### Type Checking / noImplicitReturns
 
@@ -175,17 +210,34 @@ switch (a) {
 严格标志启用了范围广泛的类型检查行为，从而更有效地保证了程序的正确性。打开它相当于启用所有严格模式系列选项，如下所述。然后，您可以根据需要关闭单个严格模式系列检查。
 TypeScript 的未来版本可能会在此标志下引入额外的更严格检查，因此 TypeScript 的升级可能会导致程序中出现新的类型错误。在适当且可能的情况下，将添加相应的标志以禁用该行为。
 
+该配置是一组规则的开关 开启 `strict` 会默认将这些规则全部启用
+
+包括
+
+- `alwaysStrict` `useUnknownInCatchVariables`
+- `noFallthroughCasesInSwitch` `noImplicitAny` `noImplicitThis`
+
 ### Type Checking / strictBindCallApply
 
+`JavaScript` 通过 `bind` `call` `apply` 改变函数的 this 配置确保 在使用 `bind` `call` `apply` 参数保持一致
+
 ### Type Checking / strictFunctionTypes
+
+对函数类型启用更严格的检查
 
 ### Type Checking / strictNullChecks
 
 ### Type Checking / strictPropertyInitialization
 
-### Type Checking / useUnknownInCatchVariables
+要求 class 所有的属性都要存在一个初始值 无论是在声明时候就提供 还是在构造函数中初始化
+
+### Type Checking /
+
+启用此配置后， `try/catch` 语句中的 `catch` 的 `error` 类型会被 `unknown` 否则是 `any` 类型
 
 ### Modules / allowUmdGlobalAccess
+
+直接使用`UMD` 格式模块而不需要先导入
 
 ### Modules / baseUrl
 

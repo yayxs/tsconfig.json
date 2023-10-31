@@ -1,0 +1,30 @@
+# include
+
+- 编译的文件列表：需要编译的文件列表
+- 逐一列出 支持通配符，指定要包含在程序中的文件名或模式数组。
+- 这些文件名相对于包含 tsconfig.json 文件的目录进行解析
+
+```json
+// 根目录下的 next-env.d.ts
+// ** 指定任意目录层级
+{
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}
+```
+
+\*匹配零个或多个字符（不包括目录分隔符）
+?匹配任何一个字符（不包括目录分隔符）
+\*\*/ 匹配任何嵌套到任何级别的目录
+
+```json
+{
+  "include": ["src", "__tests__"],
+  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+  "include": ["."],
+  "include": ["src"],
+  "include": ["./src"],
+  "include": ["./", "../dep-types", "../types"],
+  "include": ["./rollup.config.ts"]
+}
+```

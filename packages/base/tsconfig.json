@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": false,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "jquery": ["node_modules/jquery/dist/jquery.js"]
+    },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "declaration": true,
+    "allowJs": true,
+    "checkJs": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowUmdGlobalAccess": true,
+    "useUnknownInCatchVariables": true
+  },
+  // "include": ["core/**/*"]
+  "include": ["src/**/*"]
+  // "exclude": ["src/file-excluded"]
+  // "files": ["src/files/file-a.ts", "src/files/file-b.ts"]
+}
