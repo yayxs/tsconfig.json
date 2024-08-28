@@ -1,0 +1,7 @@
+{
+  "include": ["src/**/*"],
+  "files": ["main.ts"],
+  "compilerOptions": {
+    "allowUnreachableCode": false
+  }
+}
