@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": false
+  },
+  "files": ["main.ts"]
+}

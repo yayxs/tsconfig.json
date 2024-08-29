@@ -84,29 +84,6 @@ TSConfig 文件可以是 tsconfig.json 或者 jsconfig.json 相同的配置变�
 默认或者给出警告，显示的通过配置允许有害语法
 `allowXXX`
 
-### Type Checking / allowUnusedLabels
-
-```js
-someLabel: statement
-```
-
-statement 语句会被标记为 someLabel ，然后在别的地方你就可以用 someLabel 来引用这段语句。
-
-### Type Checking / alwaysStrict
-
-确保您的文件在 ECMAScript 严格模式下解析，并为每个源文件发出“use strict”。ECMAScript 严格模式是在 ES5 中引入的，它为 JavaScript 引擎的运行时提供行为调整以提高性能，并抛出一组错误而不是默默地忽略它们。
-会对所有的 `ts` 文件使用严格模式 进行检查 生成的 js 文件也会带 `use strict`
-
-### Type Checking / exactOptionalPropertyTypes
-
-这一配置会使得 `ts` 对可选择的属性 `?` 启用更加严格的检查 ，
-
-```ts
-interface IColors {
-  color: 'dark' | 'red'
-}
-```
-
 ### Type Checking /noFallthroughCasesInSwitch
 
 校验 `switch` 语句

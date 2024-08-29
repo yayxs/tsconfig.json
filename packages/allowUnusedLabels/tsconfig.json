@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "allowUnusedLabels": false
+  },
+  "files": ["main.ts"]
+}

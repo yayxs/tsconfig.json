@@ -1,0 +1,6 @@
+{
+  "files": ["main.ts", "app.tsx", "app.css", "app.d.css.ts"],
+  "compilerOptions": {
+    "allowArbitraryExtensions": true
+  }
+}
