@@ -1,0 +1,7 @@
+{
+  "files": ["main.ts"],
+  "include": ["*.ts"],
+  "compilerOptions": {
+    "baseUrl": "./"
+  }
+}

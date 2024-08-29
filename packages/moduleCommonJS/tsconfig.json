@@ -1,0 +1,7 @@
+{
+  "files": ["main.ts"],
+
+  "compilerOptions": {
+    "module": "CommonJS"
+  }
+}
